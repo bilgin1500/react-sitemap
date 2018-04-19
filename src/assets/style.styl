@@ -1,0 +1,471 @@
+json('settings.json')
+
+/* Helpers */ 
+
+// Looks up the root selector and parses the theme conditionally
+theme($cssProp,$themeProp)
+  .{NAMESPACE}--dark&,
+  .{NAMESPACE}--dark &
+    {$cssProp}: lookup('THEMES-dark-' + $themeProp)
+  .{NAMESPACE}--light&,
+  .{NAMESPACE}--light &
+    {$cssProp}: lookup('THEMES-light-' + $themeProp)
+    
+
+
+// Used in the horizontal Ix type's column system for older browser support
+addCol($n)
+  width "calc((100% / %s) + %s)" % ($n unit(LIST_ITEM_GUTTER / $n,'px'))
+  
+// Gives the box a fixed aspect ratio
+// $heightPerc is the width perc / aspect ratio
+ratio($heightPerc)
+  position relative
+  &:before
+    content ""
+    display block
+    padding-top $heightPerc
+  & > :first-child
+    bottom 0
+    height 100%
+    left 0
+    position absolute
+    right 0
+    top 0
+    width 100%
+
+// Gives us a nice bottom pointing triangleBottom
+// This must be used in a pseudo selector like :after
+triangleBottom($width,$height,$color)
+  width 0
+  height 0
+  background 0
+  border-style solid
+  border-width $height ($width * .5) 0 ($width * .5)
+  border-color $color transparent transparent transparent
+
+/* Overall */
+
+.{NAMESPACE}-reset-box
+  margin 0
+  padding 0
+  
+.{NAMESPACE}-reset-list
+  @extend .{NAMESPACE}-reset-box
+  list-style none
+
+.{NAMESPACE}-screen-reader-text
+  border 0
+  clip rect(1px, 1px, 1px, 1px)
+  clip-path inset(50%)
+  height 1px
+  margin -1px
+  overflow hidden
+  padding 0
+  position absolute !important
+  width 1px
+  word-wrap normal !important
+  
+@keyframes anim-rotation
+  from 
+    transform rotate(0deg)
+  to 
+    transform rotate(360deg)
+
+.{NAMESPACE}-spinner--rotater 
+  position absolute
+  text-indent -9999em
+  width 32px
+  height 32px
+  background-image url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAyVBMVEUAAAC9vsDCw8W9v8G9vsD29/fr7O29vsDm5+jx8fK/wML29vf///+9vsHR0tPm5+jt7u7w8PHr7Ozc3d7n6OnExcfGx8nJyszMzM7V1tjZ2tvf4OG9vsDHyMrp6uvIycu9v8HAwcTPz9HCw8W9vsC9vsDBwsTj5OXj5OXW19i9vsDm5+jw8PHy8vL09fW9vsDFxsjJyszAwsS9vsDU1dbLzM7Y2drb3N3c3d7e3+DHyMrBwsTh4uPR0tPDxcfa293R0tTV1ti9vsAll6RJAAAAQnRSTlMA7+t/MAZHQDYjHxABv6xSQjEgFgzi2M7Emop0cGVLD/ryt7Cfj3dmYWBgWjgsGd/Cv7SvopSSg4B6eHZrQjkyKx1dd0xhAAAA9klEQVR4AYWPeXOCMBBHFxIgCQKC3KCo1Wprtfd98/0/VBPb6TC0Wd+/783+ZqELrQkRoIMujFbiaLTwpESC029reB7919d7u6SgYaE8aUCivW84oEUY0lPQc408pxBqHxCIHGiw4Lxtl5h35ALFglouAAaZTj00OJ7NrvDANI/Q4PlQMDbNFA3ekiQRaHGRpmM0eMqyyxgLRlme4ydu8/n8Az3h+37xiRWv/k1RRlhxUtyVD8yCXwaDflHeP1Zr5sIey3WtfvFeVS+rTWAzFobhNhrFf4omWK03wcS2h8OzLd/1TyhiNvkJQu5amocjznm0i6HDF1RMG1aMA/PYAAAAAElFTkSuQmCC')
+  transform-origin center center
+  background-position center center
+  background-repeat no-repeat
+  animation anim-rotation 1s infinite linear
+  
+.{NAMESPACE}-link
+  display inline-block
+  vertical-align middle
+  font-size 0.8125em
+  line-height 1.25
+  text-decoration none
+  transition color 150ms
+  padding 0
+  &:focus
+    outline-width 1px
+    outline-style dashed
+  
+/*
+ * COMPONENT
+ */
+
+// Every class name should be encapsulated by this namespace
+// to prevent a class name collusion in the project.
+.{NAMESPACE}
+  position relative
+  padding 30px
+  theme('background-color','bodyBg')
+  
+  &__title
+    @extend .{NAMESPACE}-reset-box
+    font-size 0.6875em
+    font-weight normal
+    letter-spacing 0.1em
+    text-transform uppercase
+    margin-bottom 30px
+    theme('color','heading')
+
+  /*
+   * LIST ITEM
+   */
+
+  &__item
+    @extend .{NAMESPACE}-reset-box, .{NAMESPACE}-reset-list
+    box-sizing border-box
+    padding 1px 0
+
+  /*
+   * IMAGE
+   */
+
+  &__imgWrapper
+    @extend .{NAMESPACE}-reset-box
+    position relative
+    width 100%
+
+  &__imgError
+    theme('color','imgError')
+    font-size 0.4375em
+    letter-spacing 0.06em
+    line-height 1.5
+    text-align center
+    text-transform uppercase
+    box-sizing border-box
+    white-space normal
+
+  &__image
+    @extend .{NAMESPACE}-reset-box
+    display block
+    margin 0 auto
+    width 100%
+    height auto
+
+  /*
+   * LOADER SPINNER
+   */
+  
+  &__spinner
+    @extend .{NAMESPACE}-spinner--rotater 
+    top 50%
+    left 50%
+    margin-top -16px
+    margin-left -16px
+    
+    &:before,
+    &:after
+      theme('border-color','imgLoader')
+
+  /*
+   * LIST
+   */
+
+  &__list
+    @extend .{NAMESPACE}-reset-box, .{NAMESPACE}-reset-list
+    padding-left 10px
+    overflow hidden
+
+  /*
+   * LINK
+   */
+
+  &__linkWrapper
+    box-sizing border-box
+      
+  &__link
+    @extend .{NAMESPACE}-link
+    padding 5px 10px
+    position relative
+    theme('color','link')
+    theme('outline-color','outline')
+    
+  &__link:hover
+    theme('color','linkHover')
+      
+  &__link
+    padding-left 15px
+    
+    &:before
+      theme('color','listSymbol')
+      position absolute
+      content "" + LIST_SYMBOL + ""
+      display inline-block
+      margin-right 5px
+      left 3px
+  
+  &__link--hasSubmenu
+    padding-right 5px
+      
+  &__link--heading
+    font-weight bold
+    padding-left 0
+    
+    &:before
+      display none
+
+  /*
+   * TRIGGER
+   */
+     
+  &__trigger
+    @extend .{NAMESPACE}-link
+    border none
+    background-color transparent
+    transition background-color 200ms ease-in-out
+    cursor pointer
+    width 26px
+    height 26px
+    theme('color','trigger')
+    theme('outline-color','outline')
+    
+    &:before,
+    &:after
+      content ""
+      display block
+      width 12px
+      height 1px
+      margin 0 auto
+      transform-origin center center
+      transition transform 200ms ease-in-out
+      theme('background-color','triggerBg')
+      
+    &:after
+      transform translateY(2px)
+
+    &:hover
+      &:before,
+      &:after
+        theme('background-color','triggerBgHover')
+        
+    &[aria-expanded=true]
+      &:before
+        transform rotate(-45deg)
+      &:after
+        transform translateY(0) rotate(45deg)
+
+  &__triggerText
+    font-size 0.6875em
+    font-weight bold
+    line-height 1em
+    letter-spacing 0.1em
+    text-transform uppercase
+    
+  /*
+   * IX TYPE: FOLD
+   */
+
+  &--fold
+        
+    & ^[0]__listWrapper
+      height 0
+      overflow hidden
+      transition height 0.35s ease-in-out
+      
+      &--depth0
+        height auto 
+        
+        & > ^[0]__list
+          display grid
+          grid-gap 10px
+          @media screen and (min-width: 400px)
+            grid-template-columns repeat(auto-fit, minmax(200px, 1fr))
+  
+  /*
+   * IX TYPE: HORIZONTAL
+   */
+
+  &--horizontal
+      
+    & ^[0]__paging
+      display none
+      position absolute
+      z-index 2
+      top 20px
+      right 0
+      
+    & ^[0]__pButton
+      @extend .{NAMESPACE}-link
+      theme('background-color','pButtonBg')
+      theme('outline-color','outline')
+      theme('color','pButton')
+      border none
+      transition background-color 200ms ease-in-out
+      cursor pointer
+      width 48px
+      height 26px
+      font-size 1em
+      font-weight bold
+      position absolute
+      right 2px
+      
+      &:hover
+        theme('background-color','pButtonBgHover')
+        
+      &[disabled]
+        opacity 0.25
+        cursor default
+        &:hover
+          theme('background-color','pButtonBg')
+      
+    & ^[0]__pButtonLeft
+      right 106px
+      
+    & ^[0]__item
+      theme('background-color','bodyBg')
+      padding 0
+      padding-top unit(LIST_ITEM_GUTTER,'px')
+      padding-right unit(LIST_ITEM_GUTTER,'px')
+      display none
+      vertical-align top
+      transition transform 200ms ease-out, opacity 400ms
+      opacity 0
+      transform translateY(40px)
+      
+      addCol(1)
+      @media screen and (min-width: 400px)
+        addCol(2)
+      @media screen and (min-width: 600px)
+        addCol(4)
+      @media screen and (min-width: 900px)
+        addCol(5)
+        
+    & ^[0]__item--parent
+      & > ^[0]__linkWrapper
+        & > ^[0]__trigger
+          display none
+      
+    & ^[0]__item--hasExpanded
+      width 100%
+      padding-right 0
+      padding-top 0
+      display block
+      
+      & ^[0]__item
+        display inline-block
+      
+      & > ^[0]__imgWrapper
+        display none
+        
+      & > ^[0]__linkWrapper 
+        height auto
+        padding-right 170px
+        border-bottom-width 4px
+        border-bottom-style solid
+        theme('border-bottom-color', 'border')
+
+        & ^[0]__trigger
+          top 20px
+          right 50px
+          
+    & ^[0]__imgWrapper
+      box-sizing border-box
+      display flex
+      justify-content center
+      align-items center
+      
+      &--loaded
+        padding-top 0
+        
+      &--fadeIn
+        & ^[0]__image
+          opacity 1
+      
+      &--error,
+      &--error&--loaded,
+      &--loading
+        padding-top unit(100 / IMAGE_RATIO, '%')
+        
+      &--error
+        theme('background-color','imgErrorBg')
+        
+    & ^[0]__imgError
+      position absolute
+      padding 30px
+      top 50%
+      left 10px
+      right 10px
+      margin-top -40px
+      
+    & ^[0]__image
+      opacity 0
+      transition opacity 500ms
+      
+    & ^[0]__listWrapper
+      height 0
+          
+      &--depth0
+        height auto
+        white-space nowrap
+        margin-top -20px
+        
+        & > ^[0]__paging
+          width 100%
+          top 50%
+          
+          & ^[0]__pButton
+            height 48px
+            margin-top -24px
+            right 10px
+            
+          & ^[0]__pButtonLeft
+            left 10px
+            
+        & > ^[0]__list > ^[0]__item
+          display inline-block
+            
+      &--focused
+        & > ^[0]__paging
+          display block
+
+      &--expanded
+        height auto
+        
+        & > ^[0]__list > ^[0]__item
+          transform translateY(0)
+          opacity 1
+        
+    & ^[0]__list
+      padding-left 0
+      
+    & ^[0]__linkWrapper
+      position relative
+      height 150px
+      padding 20px
+      padding-left 1px
+      
+    & ^[0]__link
+      font-size 1em
+      font-weight bold
+      white-space normal
+      padding-top 0
+      padding-right 0
+      padding-bottom 0
+      
+      &--heading
+        font-size 1.2em
+      
+    & ^[0]__trigger
+      width auto
+      display block 
+      padding 5px 10px
+      line-height 0.6875em
+      position absolute
+      bottom 0
+      theme('background-color','triggerBg')
+      
+      &:hover
+        theme('background-color','triggerBgHover')
+        
+      &:before,
+      &:after
+        display none
+    

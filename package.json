@@ -1,0 +1,65 @@
+{
+  "name": "react-sitemap",
+  "version": "1.0.0-beta.0",
+  "description":
+    "A reusable, accessible and customizable react sitemap component which supports an infinite content hierarchy. ",
+  "main": "index.js",
+  "scripts": {
+    "build":
+      "./node_modules/.bin/webpack --config webpack.config.js --mode production",
+    "build:dev":
+      "./node_modules/.bin/webpack --config webpack.config.js --mode development",
+    "demo":
+      "npm run build && ./node_modules/.bin/webpack-dev-server --config demo/webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "sitemap",
+    "accessibility",
+    "customizable"
+  ],
+  "author": {
+    "name": "Bilgin Özkan",
+    "email": "bilgin1500@gmail.com",
+    "url": "https://bilginozkan.com/"
+  },
+  "homepage": "https://github.com/bilgin1500/react-sitemap#readme",
+  "repository": {
+    "type": "git",
+    "url": "github:bilgin1500/react-sitemap"
+  },
+  "bugs": {
+    "url": "https://github.com/bilgin1500/react-sitemap/issues",
+    "email": "bilgin1500@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.7.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-webpack-plugin": "^3.2.0",
+    "react-dom": "^16.3.1",
+    "style-loader": "^0.20.3",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.3"
+  }
+}

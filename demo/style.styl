@@ -1,0 +1,53 @@
+body
+  font-family Helvetica Neue, Helvetica, Arial, sans-serif
+  background-color #efefef
+  padding 1em
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+ 
+.form 
+  margin-bottom 20px
+  padding 20px 20px 10px
+  box-sizing border-box
+  background-color #fff
+  opacity 1
+  transition opacity 600ms
+  
+  &--hot
+    background-color #e238090d
+  
+  &:hover
+    opacity 1
+  
+  .form__label,
+  .form__reload
+    font-family Helvetica Neue, Helvetica, Arial, sans-serif
+    color rgba(0,0,0,0.5)
+    font-size 0.6875em
+    display inline-block
+    margin 0 10px 10px 0
+    
+  .form__title,
+  .form__namespace,
+  .form__headingStartLevel,
+  .form__id,
+  .form__reload
+    background-color rgba(0,0,0,0.025)
+    padding 5px 10px
+    border 0 
+    
+  .form__reload
+    background-color #e23809
+    text-transform uppercase
+    color white
+    font-weight bold
+    cursor pointer
+    
+  .form__title,
+  .form__namespace,
+  .form__headingStartLevel,
+  .form__id,
+  .form__showTitle,
+  .form__theme,
+  .form__ixType
+    margin-left 5px

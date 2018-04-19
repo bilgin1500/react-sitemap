@@ -1,0 +1,77 @@
+{
+  "HEADING_STARTING_LEVEL": 2,
+  "I18N": {
+    "linkTitle": "Click to visit",
+    "triggerExpandTitle": "Expand",
+    "triggerCollapseTitle": "Close",
+    "loadingText": "Loading",
+    "warn": {
+      "noTheme":
+        "No theme is supplied or theme is set to \"none\". Please note that this will render the navigation as a flat tree structure."
+    },
+    "error": {
+      "noData":
+        "Please supply a valid and not empty data property to the component. It is the only required property for the component to work. The structure is [{title:\"<STRING>\",image:\"<STRING>\", children: []}]",
+      "noImage": "Could not download the image.",
+      "server": "The server didn't return 200. The status code is: ",
+      "network": "There was a network error."
+    }
+  },
+  "IMAGE_DEFAULT":
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALEAAACcAQMAAAAK1dhuAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAABpJREFUSMftwTEBAAAAwiD7p7bGDmAAAAAQcA6gAAEAuCWqAAAAAElFTkSuQmCC",
+  "IMAGE_RATIO": 1.13461538462,
+  "IX_TYPES": ["none", "fold", "horizontal"],
+  "IX_TYPE_DEFAULT": "horizontal",
+  "LIST_ITEM_GUTTER": 20,
+  "LIST_ITEM_TRANSITION_DELAY": 50,
+  "LIST_SYMBOL": "-",
+  "NAMESPACE": "sitemap",
+  "SHOW_TITLE": true,
+  "THEME_DEFAULT": "dark",
+  "THEMES": {
+    "none": {},
+    "dark": {
+      "bodyBg": "#1f2024",
+      "bodyBgAlt": "#212530f2",
+      "border": "#212530f2",
+      "heading": "#e4e7eb",
+      "link": "#e4e7eb",
+      "linkBg": "#212530f2",
+      "linkHover": "#878792",
+      "listSymbol": "#5887f5",
+      "imgError": "#878792",
+      "imgErrorBg": "#212530f2",
+      "imgLoader": "#878792",
+      "outline": "#5887f5",
+      "pButton": "#e4e7eb",
+      "pButtonBg": "#5887f555",
+      "pButtonBgHover": "#5887f585",
+      "trigger": "#fff",
+      "triggerBg": "#5887f5",
+      "triggerBgHover": "#4572ed",
+      "triggerHover": "#878792"
+    },
+    "light": {
+      "bodyBg": "#fff",
+      "bodyBgAlt": "#bcbccc",
+      "border": "#f1f5f9",
+      "heading": "#bcbccc",
+      "link": "#2f353d",
+      "linkBg": "#bcbccc",
+      "linkHover": "#f25529",
+      "listSymbol": "#f25529",
+      "imgError": "#535f69",
+      "imgErrorBg": "#f1f5f9",
+      "imgLoader": "#ccc",
+      "outline": "#f25529",
+      "pButton": "#2f353d",
+      "pButtonBg": "#f2552925",
+      "pButtonBgHover": "#f2552985",
+      "trigger": "#fff",
+      "triggerBg": "#f25529",
+      "triggerBgHover": "#d94c25",
+      "triggerHover": "#f25529"
+    }
+  },
+  "TITLE": "A Flexible Sitemap"
+}
